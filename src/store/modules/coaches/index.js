@@ -1,12 +1,11 @@
 import mutations from "./mutations.js";
-import getters from "./getters.js";
 import actions from "./actions.js";
+import getters from "./getters.js";
 
 export default {
   namespaced: true,
   state() {
     return {
-      userIsCoach: true,
       lastFetch: null,
       coaches: [
         {
@@ -31,6 +30,6 @@ export default {
     };
   },
   mutations,
-  getters,
   actions,
+  getters,
 };

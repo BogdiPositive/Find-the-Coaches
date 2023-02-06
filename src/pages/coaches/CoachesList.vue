@@ -12,9 +12,14 @@
           <base-button mode="flat" @click="loadCoaches(true)"
             >Refresh</base-button
           >
-
-          <RouterLink to="/register" v-if="!isCoach && !isLoading"
-            >Register as Coach</RouterLink
+          <base-button link to="/auth?redirect=register" v-if="!isLoggedIn"
+            >Login to Register as a Coach</base-button
+          >
+          <base-button
+            link
+            to="/register"
+            v-if="isLoggedIn && !isCoach && !isLoading"
+            >Register as Coach</base-button
           >
         </div>
         <div v-if="isLoading">
@@ -43,6 +48,9 @@ import CoachFilter from "../../components/coaches/CoachFilter.vue";
 export default {
   components: { CoachItem, CoachFilter },
   computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated;
+    },
     isCoach() {
       return this.$store.getters["coaches/isCoach"];
     },
